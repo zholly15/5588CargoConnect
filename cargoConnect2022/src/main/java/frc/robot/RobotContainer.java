@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.subsystems.BallSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
@@ -21,6 +22,8 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.Constants;
+import frc.robot.commands.FlywheelStartCommand;
+import frc.robot.commands.OneIndexBallCommand;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -46,6 +49,7 @@ public class RobotContainer {
   private static final int START_ARROW = 8;
   private static final int JOYSTICK_RIGHT_CLICK = 10;
   private static final int JOYSTICK_LEFT_CLICK = 9;
+  public static BallSubsystem M_BALL_SUBSYSTEM = new BallSubsystem();
 
   
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -53,7 +57,7 @@ public class RobotContainer {
     // Configure the button bindings
     configureButtonBindings();
     m_subsystems.setDefaultCommand(
-        new RunCommand(() -> m_subsystems.tankDrive(-1.0 * driverXBox.getRawAxis(1), -1.0 * driverXBox.getRawAxis(5))));
+        new RunCommand(() -> m_subsystems.tankDrive(driverXBox.getRawAxis(1),driverXBox.getRawAxis(5)), m_subsystems));
     // ^ Setting the Default Command to m_robotDrive, meaning it will drive as long
     // as nothing else is scheduled
   }
@@ -66,7 +70,13 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
-  private void configureButtonBindings() {}
+  private void configureButtonBindings() {
+    JoystickButton flywheelStarButton = new JoystickButton(driverXBox, B_BUTTON_XBOX);
+    flywheelStarButton.toggleWhenPressed(new FlywheelStartCommand(M_BALL_SUBSYSTEM));
+
+    JoystickButton oneIndexBallCommandButton = new JoystickButton(driverXBox, A_BUTTON_XBOX);
+    oneIndexBallCommandButton.whileHeld(new OneIndexBallCommand(M_BALL_SUBSYSTEM));
+  }
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
