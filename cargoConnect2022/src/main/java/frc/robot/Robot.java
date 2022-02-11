@@ -53,11 +53,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-    // System.out.print(
-    // "Flywheel Revolutions per min" +
-    // (m_robotContainer.M_BALL_SUBSYSTEM.flywheelEncoder.getRate() / 2048) * 60);
-    SmartDashboard.putNumber("Flywheel Revolutions per min",
-        (m_robotContainer.M_BALL_SUBSYSTEM.flywheelEncoder.getRate() / 2048) * 60);
+    double FLY_WHEEL_RPM = m_robotContainer.M_BALL_SUBSYSTEM.flywheelEncoder.getRate() / 2048 * 60;
+    SmartDashboard.putNumber("Flywheel Revolutions per min", (FLY_WHEEL_RPM));
 
     // Runs the Scheduler. This is responsible for polling buttons, adding
     // newly-scheduled
