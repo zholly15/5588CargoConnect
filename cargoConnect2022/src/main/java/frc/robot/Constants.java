@@ -13,5 +13,7 @@ public final class Constants {
     public static final double MAX_SPEED = 0.25;
     public static final double FLYWHEEL_SPEED = 0.9;
     public static final double BALL_INDEX_SPEED = -0.75;
+    public static final double GATHERER_SPEED = 0.75;
+    public static final double TRANSPORT_SPEED = 0.5;
 
 }

@@ -18,10 +18,9 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotContainer;
 
 public class BallSubsystem extends SubsystemBase {
-  public VictorSPX ballCollect = new VictorSPX(5);
+  public VictorSPX ballGatherer = new VictorSPX(5);
 
-  public VictorSPX ballBeltOne = new VictorSPX(6);
-  public VictorSPX ballBeltTwo = new VictorSPX(7);
+  public VictorSPX ballTransport = new VictorSPX(6);
 
   public VictorSPX index = new VictorSPX(8);
   public VictorSPX flyWheel = new VictorSPX(9);
@@ -29,23 +28,18 @@ public class BallSubsystem extends SubsystemBase {
   public DigitalInput flywheelA = new DigitalInput(0);
   public DigitalInput flywheelB = new DigitalInput(1);
 
-  public DigitalInput ballBeltA = new DigitalInput(2);
-  public DigitalInput ballBeltB = new DigitalInput(3);
-
   public Encoder flywheelEncoder = new Encoder(flywheelA, flywheelB);
-  public Encoder ballBeltEncoder = new Encoder(ballBeltA, ballBeltB);
 
   public BallSubsystem() {
     flywheelEncoder.reset();
   }
 
-  public void setBallCollectSpeed(double speed){
-    ballCollect.set(ControlMode.PercentOutput, speed);
+  public void gathererSetSpeed(double speed){
+    ballGatherer.set(ControlMode.PercentOutput, speed);
   }
 
-  public void setBallBeltSpeeds(double speed){
-    ballBeltOne.set(ControlMode.PercentOutput, speed);
-    ballBeltTwo.set(ControlMode.PercentOutput, speed);
+  public void transport (double speed){
+    ballTransport.set(ControlMode.PercentOutput, speed);
   }
 
   public void setFlywheelSpeed(double speed){

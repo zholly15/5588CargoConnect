@@ -24,6 +24,9 @@ import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.Constants;
 import frc.robot.commands.FlywheelStartCommand;
 import frc.robot.commands.OneIndexBallCommand;
+import frc.robot.commands.BallIntake;
+import frc.robot.commands.BallOuttake;
+import frc.robot.commands.Transport;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -50,6 +53,7 @@ public class RobotContainer {
   private static final int JOYSTICK_RIGHT_CLICK = 10;
   private static final int JOYSTICK_LEFT_CLICK = 9;
   public static BallSubsystem M_BALL_SUBSYSTEM = new BallSubsystem();
+  
 
   
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -76,6 +80,15 @@ public class RobotContainer {
 
     JoystickButton oneIndexBallCommandButton = new JoystickButton(driverXBox, A_BUTTON_XBOX);
     oneIndexBallCommandButton.whileHeld(new OneIndexBallCommand(M_BALL_SUBSYSTEM));
+
+    JoystickButton intakeButton = new JoystickButton(driverXBox, X_BUTTON_XBOX);
+    intakeButton.whileHeld(new BallIntake(M_BALL_SUBSYSTEM));
+
+    JoystickButton outtakeButton = new JoystickButton(driverXBox, Y_BUTTON_XBOX);
+    outtakeButton.whileHeld(new BallOuttake(M_BALL_SUBSYSTEM));
+
+    JoystickButton transportButton = new JoystickButton(driverXBox, LEFT_BUMPER_XBOX);
+    transportButton.whileHeld(new Transport(M_BALL_SUBSYSTEM));
   }
 
   /**
