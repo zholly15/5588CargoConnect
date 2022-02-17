@@ -27,7 +27,7 @@ public class Transport extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-      ball_subsystem.gathererSetSpeed(Constants.TRANSPORT_SPEED);
+      ball_subsystem.transport(Constants.TRANSPORT_SPEED);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -37,7 +37,7 @@ public class Transport extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    ball_subsystem.gathererSetSpeed(0.0);
+    ball_subsystem.transport(0.0);
   }
 
   // Returns true when the command should end.

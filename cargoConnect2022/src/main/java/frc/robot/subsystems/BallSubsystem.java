@@ -18,12 +18,13 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotContainer;
 
 public class BallSubsystem extends SubsystemBase {
-  public VictorSPX ballGatherer = new VictorSPX(5);
 
+  public VictorSPX ballGatherer = new VictorSPX(5);
   public VictorSPX ballTransport = new VictorSPX(6);
 
+  public VictorSPX flyWheel = new VictorSPX(7);
   public VictorSPX index = new VictorSPX(8);
-  public VictorSPX flyWheel = new VictorSPX(9);
+ 
 
   public DigitalInput flywheelA = new DigitalInput(0);
   public DigitalInput flywheelB = new DigitalInput(1);
