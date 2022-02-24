@@ -27,6 +27,7 @@ import frc.robot.commands.OneIndexBallCommand;
 import frc.robot.commands.BallIntake;
 import frc.robot.commands.BallOuttake;
 import frc.robot.commands.Transport;
+import frc.robot.commands.DriveDistance;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -39,9 +40,8 @@ import frc.robot.commands.Transport;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
-  private final DriveSubsystem m_subsystems = new DriveSubsystem();// declaring new drivesystem object
-  private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
+  private final DriveSubsystem m_driveSubsystem= new DriveSubsystem();// declaring new drivesystem object
+  private final DriveDistance m_autoCommand = new DriveDistance(m_driveSubsystem, 144, -0.75);
   public static BallSubsystem M_BALL_SUBSYSTEM = new BallSubsystem();
 
   public static XboxController driverXBox = new XboxController(1);
@@ -63,8 +63,8 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
-    m_subsystems.setDefaultCommand(
-        new RunCommand(() -> m_subsystems.tankDrive(driverXBox.getRawAxis(1), driverXBox.getRawAxis(5)), m_subsystems));
+    m_driveSubsystem.setDefaultCommand(
+        new RunCommand(() -> m_driveSubsystem.tankDrive(driverXBox.getRawAxis(1), driverXBox.getRawAxis(5)), m_driveSubsystem));
     // ^ Setting the Default Command to m_robotDrive, meaning it will drive as long
     // as nothing else is scheduled
   }
@@ -92,6 +92,10 @@ public class RobotContainer {
 
     JoystickButton transportButton = new JoystickButton(driverXBox, LEFT_BUMPER_XBOX);
     transportButton.whileHeld(new Transport(M_BALL_SUBSYSTEM));
+    
+    JoystickButton driveDistanceButton = new JoystickButton(driverXBox, RIGHT_BUMPER_XBOX);
+    driveDistanceButton.whenPressed(new DriveDistance(m_driveSubsystem, 144, -0.75));
+
   }
 
   /**

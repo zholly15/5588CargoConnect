@@ -24,16 +24,22 @@ public class DriveSubsystem extends SubsystemBase {
   private CANSparkMax backLeftMotor = new CANSparkMax(3, MotorType.kBrushless);
   private CANSparkMax backRightMotor = new CANSparkMax(4, MotorType.kBrushless);
 
-  private RelativeEncoder m_frontLeftEncoder;
-  private RelativeEncoder m_frontRightEncoder;
-  private RelativeEncoder m_backRightEncoder;
-  private RelativeEncoder m_backLeftEncoder;
+  private RelativeEncoder m_frontLeftEncoder = frontLeftMotor.getEncoder();
+  private RelativeEncoder m_frontRightEncoder = frontRightMotor.getEncoder();
+  private RelativeEncoder m_backRightEncoder = backRightMotor.getEncoder();
+  private RelativeEncoder m_backLeftEncoder = backLeftMotor.getEncoder();
+  private double encoderPCF = 2;
+  
 
   public DriveSubsystem() {
     frontLeftMotor.setInverted(true);
     frontRightMotor.setInverted(false);
     backLeftMotor.setInverted(true);
     backRightMotor.setInverted(false);
+    m_frontLeftEncoder.setPositionConversionFactor(encoderPCF);
+    m_frontRightEncoder.setPositionConversionFactor(encoderPCF);
+    m_backRightEncoder.setPositionConversionFactor(encoderPCF);
+    m_backLeftEncoder.setPositionConversionFactor(encoderPCF);
 
     // ^ FIX: Making sure none of the motors are inverted, change when we figure out
     // WTH is up with the motors lol
@@ -77,7 +83,7 @@ public class DriveSubsystem extends SubsystemBase {
 
   public double getMeanEncoderDistance() {
     // currently report leaders only
-    return (getLeftEncoderDistance() + getRighttEncoderDistance()) / 2.0;
+    return (getLeftEncoderDistance() + getRightEncoderDistance()) / 2.0;
   }
 
   public double getLeftEncoderDistance() {
@@ -85,7 +91,7 @@ public class DriveSubsystem extends SubsystemBase {
     return m_frontLeftEncoder.getPosition();
   }
 
-  public double getRighttEncoderDistance() {
+  public double getRightEncoderDistance() {
     // currently report leader only
     return m_frontRightEncoder.getPosition();
   }
