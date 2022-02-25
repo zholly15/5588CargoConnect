@@ -40,11 +40,12 @@ import frc.robot.commands.DriveDistance;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final DriveSubsystem m_driveSubsystem= new DriveSubsystem();// declaring new drivesystem object
+  private final DriveSubsystem m_driveSubsystem = new DriveSubsystem();// declaring new drivesystem object
   private final DriveDistance m_autoCommand = new DriveDistance(m_driveSubsystem, 144, -0.75);
   public static BallSubsystem M_BALL_SUBSYSTEM = new BallSubsystem();
 
   public static XboxController driverXBox = new XboxController(1);
+  public static XboxController operatorController = new XboxController(2);
 
   private static final int A_BUTTON_XBOX = 1;
   private static final int B_BUTTON_XBOX = 2;
@@ -64,7 +65,8 @@ public class RobotContainer {
     // Configure the button bindings
     configureButtonBindings();
     m_driveSubsystem.setDefaultCommand(
-        new RunCommand(() -> m_driveSubsystem.tankDrive(driverXBox.getRawAxis(1), driverXBox.getRawAxis(5)), m_driveSubsystem));
+        new RunCommand(() -> m_driveSubsystem.tankDrive(driverXBox.getRawAxis(1), driverXBox.getRawAxis(5)),
+            m_driveSubsystem));
     // ^ Setting the Default Command to m_robotDrive, meaning it will drive as long
     // as nothing else is scheduled
   }
@@ -78,23 +80,25 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    JoystickButton flywheelStarButton = new JoystickButton(driverXBox, B_BUTTON_XBOX);
+    JoystickButton flywheelStarButton = new JoystickButton(operatorController, B_BUTTON_XBOX);
     flywheelStarButton.toggleWhenPressed(new FlywheelStartCommand(M_BALL_SUBSYSTEM));
 
-    JoystickButton oneIndexBallCommandButton = new JoystickButton(driverXBox, A_BUTTON_XBOX);
+    JoystickButton oneIndexBallCommandButton = new JoystickButton(operatorController, A_BUTTON_XBOX);
     oneIndexBallCommandButton.whileHeld(new OneIndexBallCommand(M_BALL_SUBSYSTEM));
 
-    JoystickButton intakeButton = new JoystickButton(driverXBox, X_BUTTON_XBOX);
-    intakeButton.whileHeld(new BallIntake(M_BALL_SUBSYSTEM));
-
-    JoystickButton outtakeButton = new JoystickButton(driverXBox, Y_BUTTON_XBOX);
-    outtakeButton.whileHeld(new BallOuttake(M_BALL_SUBSYSTEM));
-
-    JoystickButton transportButton = new JoystickButton(driverXBox, LEFT_BUMPER_XBOX);
+    JoystickButton transportButton = new JoystickButton(operatorController, LEFT_BUMPER_XBOX);
     transportButton.whileHeld(new Transport(M_BALL_SUBSYSTEM));
-    
-    JoystickButton driveDistanceButton = new JoystickButton(driverXBox, RIGHT_BUMPER_XBOX);
-    driveDistanceButton.whenPressed(new DriveDistance(m_driveSubsystem, 144, -0.75));
+
+    JoystickButton intakeButton = new JoystickButton(driverXBox, LEFT_BUMPER_XBOX);
+    intakeButton.toggleWhenPressed(new BallIntake(M_BALL_SUBSYSTEM));
+
+    JoystickButton outtakeButton = new JoystickButton(driverXBox, RIGHT_BUMPER_XBOX);
+    outtakeButton.toggleWhenPressed(new BallOuttake(M_BALL_SUBSYSTEM));
+
+    ;
+
+    JoystickButton driveDistanceButton = new JoystickButton(driverXBox, Y_BUTTON_XBOX);
+    driveDistanceButton.whenPressed(new DriveDistance(m_driveSubsystem, 48, -0.75));
 
   }
 

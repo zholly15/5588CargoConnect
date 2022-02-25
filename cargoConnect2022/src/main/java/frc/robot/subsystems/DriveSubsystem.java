@@ -28,18 +28,13 @@ public class DriveSubsystem extends SubsystemBase {
   private RelativeEncoder m_frontRightEncoder = frontRightMotor.getEncoder();
   private RelativeEncoder m_backRightEncoder = backRightMotor.getEncoder();
   private RelativeEncoder m_backLeftEncoder = backLeftMotor.getEncoder();
-  private double encoderPCF = 2;
-  
 
   public DriveSubsystem() {
     frontLeftMotor.setInverted(true);
     frontRightMotor.setInverted(false);
     backLeftMotor.setInverted(true);
     backRightMotor.setInverted(false);
-    m_frontLeftEncoder.setPositionConversionFactor(encoderPCF);
-    m_frontRightEncoder.setPositionConversionFactor(encoderPCF);
-    m_backRightEncoder.setPositionConversionFactor(encoderPCF);
-    m_backLeftEncoder.setPositionConversionFactor(encoderPCF);
+    m_backLeftEncoder.setPositionConversionFactor(1.77);
 
     // ^ FIX: Making sure none of the motors are inverted, change when we figure out
     // WTH is up with the motors lol
@@ -83,15 +78,16 @@ public class DriveSubsystem extends SubsystemBase {
 
   public double getMeanEncoderDistance() {
     // currently report leaders only
-    return (getLeftEncoderDistance() + getRightEncoderDistance()) / 2.0;
+    return (getLeftEncoderDistance() + getRighttEncoderDistance()) / 2.0;
   }
 
   public double getLeftEncoderDistance() {
+
     // currently report leader only
     return m_frontLeftEncoder.getPosition();
   }
 
-  public double getRightEncoderDistance() {
+  public double getRighttEncoderDistance() {
     // currently report leader only
     return m_frontRightEncoder.getPosition();
   }

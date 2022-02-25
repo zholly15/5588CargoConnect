@@ -23,8 +23,8 @@ public class BallSubsystem extends SubsystemBase {
   public VictorSPX ballTransport = new VictorSPX(6);
 
   public VictorSPX flyWheel = new VictorSPX(7);
+
   public VictorSPX index = new VictorSPX(8);
- 
 
   public DigitalInput flywheelA = new DigitalInput(0);
   public DigitalInput flywheelB = new DigitalInput(1);
@@ -35,24 +35,24 @@ public class BallSubsystem extends SubsystemBase {
     flywheelEncoder.reset();
   }
 
-  public void gathererSetSpeed(double speed){
+  public void gathererSetSpeed(double speed) {
     ballGatherer.set(ControlMode.PercentOutput, speed);
   }
 
-  public void transport (double speed){
+  public void transport(double speed) {
     ballTransport.set(ControlMode.PercentOutput, speed);
   }
 
-  public void setFlywheelSpeed(double speed){
+  public void setFlywheelSpeed(double speed) {
     flyWheel.set(ControlMode.PercentOutput, speed);
   }
 
-  public void setIndexSpeed(double speed){
+  public void setIndexSpeed(double speed) {
     index.set(ControlMode.PercentOutput, speed);
   }
 
   @Override
   public void periodic() {
-    
+
   }
 }
