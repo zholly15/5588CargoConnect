@@ -34,7 +34,7 @@ public class DriveSubsystem extends SubsystemBase {
     frontRightMotor.setInverted(false);
     backLeftMotor.setInverted(true);
     backRightMotor.setInverted(false);
-    m_backLeftEncoder.setPositionConversionFactor(1.77);
+    m_backLeftEncoder.setPositionConversionFactor(1.9);
 
     // ^ FIX: Making sure none of the motors are inverted, change when we figure out
     // WTH is up with the motors lol
@@ -46,6 +46,8 @@ public class DriveSubsystem extends SubsystemBase {
 
     backLeftMotor.follow(frontLeftMotor);
     backRightMotor.follow(frontRightMotor);
+
+    this.resetEncoders();
 
     // ???? Configure encoders here
 

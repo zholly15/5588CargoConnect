@@ -12,19 +12,18 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.BallSubsystem;
 import frc.robot.Constants;
 
-
 public class FlywheelStartCommand extends CommandBase {
-  private static final int A_BUTTON_XBOX = 1;
-  private static final int B_BUTTON_XBOX = 2;
+  private double m_speed;
   private BallSubsystem m_ballSubsystem;
 
-  public FlywheelStartCommand (BallSubsystem ballSubsystem) {
-    m_ballSubsystem = ballSubsystem; 
+  public FlywheelStartCommand(BallSubsystem ballSubsystem, double speed) {
+    m_ballSubsystem = ballSubsystem;
+    m_speed = speed;
   }
 
   @Override
   public void initialize() {
-    m_ballSubsystem.setFlywheelSpeed(Constants.FLYWHEEL_SPEED);
+    m_ballSubsystem.setFlywheelSpeed(m_speed);
   }
 
   @Override

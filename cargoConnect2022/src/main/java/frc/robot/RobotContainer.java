@@ -28,6 +28,7 @@ import frc.robot.commands.BallIntake;
 import frc.robot.commands.BallOuttake;
 import frc.robot.commands.Transport;
 import frc.robot.commands.DriveDistance;
+import frc.robot.commands.TurnInPlaceCommand;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -41,7 +42,7 @@ import frc.robot.commands.DriveDistance;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final DriveSubsystem m_driveSubsystem = new DriveSubsystem();// declaring new drivesystem object
-  private final DriveDistance m_autoCommand = new DriveDistance(m_driveSubsystem, 144, -0.75);
+  private final TurnInPlaceCommand m_autoCommand = new TurnInPlaceCommand(m_driveSubsystem, 90, 0.5);
   public static BallSubsystem M_BALL_SUBSYSTEM = new BallSubsystem();
 
   public static XboxController driverXBox = new XboxController(1);
@@ -81,10 +82,13 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     JoystickButton flywheelStarButton = new JoystickButton(operatorController, B_BUTTON_XBOX);
-    flywheelStarButton.toggleWhenPressed(new FlywheelStartCommand(M_BALL_SUBSYSTEM));
+    flywheelStarButton.toggleWhenPressed(new FlywheelStartCommand(M_BALL_SUBSYSTEM, Constants.sixHIGH_FLYWHEEL_SPEED));
 
     JoystickButton oneIndexBallCommandButton = new JoystickButton(operatorController, A_BUTTON_XBOX);
     oneIndexBallCommandButton.whileHeld(new OneIndexBallCommand(M_BALL_SUBSYSTEM));
+
+    JoystickButton bounceFlywheel = new JoystickButton(operatorController, X_BUTTON_XBOX);
+    bounceFlywheel.toggleWhenPressed(new FlywheelStartCommand(M_BALL_SUBSYSTEM, Constants.LOW_FLYWHEEL_SPEED));
 
     JoystickButton transportButton = new JoystickButton(operatorController, LEFT_BUMPER_XBOX);
     transportButton.whileHeld(new Transport(M_BALL_SUBSYSTEM));
@@ -95,10 +99,7 @@ public class RobotContainer {
     JoystickButton outtakeButton = new JoystickButton(driverXBox, RIGHT_BUMPER_XBOX);
     outtakeButton.toggleWhenPressed(new BallOuttake(M_BALL_SUBSYSTEM));
 
-    ;
-
-    JoystickButton driveDistanceButton = new JoystickButton(driverXBox, Y_BUTTON_XBOX);
-    driveDistanceButton.whenPressed(new DriveDistance(m_driveSubsystem, 48, -0.75));
+    // TODO: limelight and check flywhel rpm
 
   }
 
