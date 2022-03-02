@@ -4,7 +4,10 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
-
+/*
+* TO DO: tune joystick outputting
+*limelight
+*/
 package frc.robot.subsystems;
 
 //import com.revrobotics.CANEncoder;
@@ -35,14 +38,17 @@ public class DriveSubsystem extends SubsystemBase {
     backLeftMotor.setInverted(true);
     backRightMotor.setInverted(false);
     m_backLeftEncoder.setPositionConversionFactor(1.9);
+    m_backRightEncoder.setPositionConversionFactor(1.9);
+    m_frontLeftEncoder.setPositionConversionFactor(1.9);
+    m_frontRightEncoder.setPositionConversionFactor(1.9);
 
     // ^ FIX: Making sure none of the motors are inverted, change when we figure out
     // WTH is up with the motors lol
 
-    frontLeftMotor.setSmartCurrentLimit(80);
-    frontRightMotor.setSmartCurrentLimit(80);
-    backLeftMotor.setSmartCurrentLimit(80);
-    backRightMotor.setSmartCurrentLimit(80);
+    frontLeftMotor.setSmartCurrentLimit(Constants.SMART_LIMIT);
+    frontRightMotor.setSmartCurrentLimit(Constants.SMART_LIMIT);
+    backLeftMotor.setSmartCurrentLimit(Constants.SMART_LIMIT);
+    backRightMotor.setSmartCurrentLimit(Constants.SMART_LIMIT);
 
     backLeftMotor.follow(frontLeftMotor);
     backRightMotor.follow(frontRightMotor);
@@ -63,7 +69,8 @@ public class DriveSubsystem extends SubsystemBase {
 
   public void tankDrive(double leftSpeed, double rightSpeed) {
     // May need invert left
-    m_drive.tankDrive(leftSpeed * Constants.k, rightSpeed * Constants.k);
+    m_drive.tankDrive(leftSpeed * Constants.k , rightSpeed * Constants.k);
+  
   }
 
   @Override

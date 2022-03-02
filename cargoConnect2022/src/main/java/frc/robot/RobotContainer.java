@@ -42,7 +42,8 @@ import frc.robot.commands.TurnInPlaceCommand;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final DriveSubsystem m_driveSubsystem = new DriveSubsystem();// declaring new drivesystem object
-  private final TurnInPlaceCommand m_autoCommand = new TurnInPlaceCommand(m_driveSubsystem, 90, 0.5);
+  //private final TurnInPlaceCommand m_autoCommand = new TurnInPlaceCommand(m_driveSubsystem, 90, 0.5);
+  private final DriveDistance m_autoCommand = new DriveDistance(m_driveSubsystem, 60, 0.7);
   public static BallSubsystem M_BALL_SUBSYSTEM = new BallSubsystem();
 
   public static XboxController driverXBox = new XboxController(1);
@@ -110,6 +111,7 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
+    m_driveSubsystem.resetEncoders();
     return m_autoCommand;
   }
 }

@@ -27,7 +27,7 @@ public class BallOuttake extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-      ball_subsystem.gathererSetSpeed(Constants.GATHERER_SPEED * -1);
+    ball_subsystem.gathererSetSpeed(Constants.GATHERER_SPEED * -1);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
