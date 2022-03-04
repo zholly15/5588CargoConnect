@@ -1,14 +1,18 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.networktables.NetworkTable;
-import edu.wpi.first.networktables.NetworkTableEntry;
-import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.RelativeEncoder;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
+import edu.wpi.first.math.MathUtil;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.subsystems.LimelightSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.Constants;
+import frc.robot.RobotContainer;
 
 public class LimelightTrack extends CommandBase{
     private final LimelightSubsystem m_LimelightSubsystem;
@@ -27,7 +31,16 @@ public class LimelightTrack extends CommandBase{
       // Called every time the scheduler runs while the command is scheduled.
       @Override
       public void execute() {
-          
+          if(!RobotContainer.m_LimelightSubsystem.hasTarget()){
+            m_DriveSubsystem.tankDrive(0,0);//uhhhhh ask zach
+          }
+          else{
+            System.out.print(RobotContainer.m_LimelightSubsystem.getX());
+            double speed = RobotContainer.m_LimelightSubsystem.getX()*Constants.K_TURN;
+            speed = MathUtil.clamp(speed, -1 * Constants.MAX_SPEED, Constants.MAX_SPEED);//speed, low, high
+            m_DriveSubsystem.tankDrive(speed, -speed);//UHHHHHH ASK ZACH
+
+          }
       }
     
       // Called once the command ends or is interrupted.

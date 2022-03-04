@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.LimelightSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.BallSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
@@ -45,6 +46,7 @@ public class RobotContainer {
   //private final TurnInPlaceCommand m_autoCommand = new TurnInPlaceCommand(m_driveSubsystem, 90, 0.5);
   private final DriveDistance m_autoCommand = new DriveDistance(m_driveSubsystem, 60, 0.7);
   public static BallSubsystem M_BALL_SUBSYSTEM = new BallSubsystem();
+  public static LimelightSubsystem m_LimelightSubsystem = new LimelightSubsystem();
 
   public static XboxController driverXBox = new XboxController(1);
   public static XboxController operatorController = new XboxController(2);
