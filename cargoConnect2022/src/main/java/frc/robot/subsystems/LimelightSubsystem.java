@@ -14,7 +14,7 @@ public LimelightSubsystem(int a){
 }
 
 public LimelightSubsystem(){
-    this(2);//calls normal constructor cuz it needs a default for some reason
+    this(0);//calls normal constructor cuz it needs a default for some reason
 }
 
 public boolean hasTarget(){
