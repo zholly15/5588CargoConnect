@@ -51,8 +51,8 @@ public class LimelightTrack extends CommandBase{
       // Returns true when the command should end.
       @Override
       public boolean isFinished() {
-        return false;
-      }
+        return (RobotContainer.m_LimelightSubsystem.getX() <= 1.5 && RobotContainer.m_LimelightSubsystem.getX() >=-1.5);
+      }//between -1.5->1.5
 
 
 }

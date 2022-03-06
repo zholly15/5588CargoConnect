@@ -51,6 +51,10 @@ public class BallSubsystem extends SubsystemBase {
     index.set(ControlMode.PercentOutput, speed);
   }
 
+  public boolean checkFlywheelSpeed(){
+    return ((flywheelEncoder.getRate() / 2048) * 60) >= 2800;
+  }
+
   @Override
   public void periodic() {
 
