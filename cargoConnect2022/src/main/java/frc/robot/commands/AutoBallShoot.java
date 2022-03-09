@@ -17,7 +17,7 @@ public class AutoBallShoot extends CommandBase {
 
     @Override
     public void execute() {
-        m_ballSubsystem.setFlywheelSpeed(Constants.sixHIGH_FLYWHEEL_SPEED);
+        m_ballSubsystem.setFlywheelSpeed(Constants.AUTO_FLYWHEEL_SPEED);
         if(m_ballSubsystem.checkFlywheelSpeed())//checks if flywheel is up to speed
             m_ballSubsystem.setIndexSpeed(Constants.BALL_INDEX_SPEED);//activates index wheel to transport ball :)
             //flywheel RPM hits negative, rework flywheel logic, change limelight pipeline,

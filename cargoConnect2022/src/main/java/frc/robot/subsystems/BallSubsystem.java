@@ -52,7 +52,7 @@ public class BallSubsystem extends SubsystemBase {
   }
 
   public boolean checkFlywheelSpeed(){
-    return ((flywheelEncoder.getRate() / 2048) * 60) >= 2800;
+    return ((flywheelEncoder.getRate() / 2048) * 60) >= 4000;
   }
 
   @Override
