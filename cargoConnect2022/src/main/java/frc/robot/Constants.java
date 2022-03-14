@@ -19,5 +19,6 @@ public final class Constants {
     public static final double GATHERER_SPEED = 1;
     public static final double TRANSPORT_SPEED = 0.5;
     public static final int SMART_LIMIT = 80;
+    public static final double INTAKELIFT_SPEED = 0.2;
 
 }

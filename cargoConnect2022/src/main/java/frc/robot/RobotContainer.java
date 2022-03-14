@@ -109,6 +109,12 @@ public class RobotContainer {
     JoystickButton outtakeButton = new JoystickButton(driverXBox, RIGHT_BUMPER_XBOX);
     outtakeButton.toggleWhenPressed(new BallOuttake(M_BALL_SUBSYSTEM));
 
+    JoystickButton intakeLiftInButton = new JoystickButton(operatorController, START_ARROW);
+    outtakeButton.toggleWhenPressed(new IntakeLiftIn(M_BALL_SUBSYSTEM));
+
+    JoystickButton intakeLiftOutButton = new JoystickButton(operatorController, BACK_ARROW);
+    outtakeButton.toggleWhenPressed(new IntakeLiftOut(M_BALL_SUBSYSTEM));
+
     // TODO: limelight and check flywhel rpm
 
   }

@@ -29,6 +29,9 @@ public class BallSubsystem extends SubsystemBase {
   public DigitalInput flywheelA = new DigitalInput(0);
   public DigitalInput flywheelB = new DigitalInput(1);
 
+  public VictorSPX intakeLift = new VictorSPX(9);
+  
+
   public Encoder flywheelEncoder = new Encoder(flywheelA, flywheelB);
 
   public BallSubsystem() {
@@ -53,6 +56,10 @@ public class BallSubsystem extends SubsystemBase {
 
   public boolean checkFlywheelSpeed(){
     return ((flywheelEncoder.getRate() / 2048) * 60) >= 4000;
+  }
+
+  public void setArmSpeed(double speed) {
+    intakeLift.set(ControlMode.PercentOutput, speed);
   }
 
   @Override
