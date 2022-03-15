@@ -22,6 +22,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.Constants;
 import frc.robot.commands.FlywheelStartCommand;
 import frc.robot.commands.OneIndexBallCommand;
@@ -33,6 +34,7 @@ import frc.robot.commands.Transport;
 import frc.robot.commands.DriveDistance;
 import frc.robot.commands.TurnInPlaceCommand;
 import frc.robot.commands.Auto1Ball;
+import frc.robot.commands.Climber;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -51,6 +53,8 @@ public class RobotContainer {
   private final Auto1Ball m_autoCommand = new Auto1Ball(m_driveSubsystem, m_LimelightSubsystem, M_BALL_SUBSYSTEM);
   public static BallSubsystem M_BALL_SUBSYSTEM = new BallSubsystem();
   public static LimelightSubsystem m_LimelightSubsystem = new LimelightSubsystem();
+  public static ClimberSubsystem m_ClimberSubsystem = new ClimberSubsystem();
+
 
   public static XboxController driverXBox = new XboxController(1);
   public static XboxController operatorController = new XboxController(2);
@@ -108,6 +112,9 @@ public class RobotContainer {
 
     JoystickButton outtakeButton = new JoystickButton(driverXBox, RIGHT_BUMPER_XBOX);
     outtakeButton.toggleWhenPressed(new BallOuttake(M_BALL_SUBSYSTEM));
+
+    JoystickButton climberButton = new JoystickButton(operatorController, operatorController.getAxisCount());
+    climberButton.toggleWhenActive(new Climber(m_ClimberSubsystem, operatorController.getRawAxis(1)));
 
     // TODO: limelight and check flywhel rpm
 
