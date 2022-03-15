@@ -58,7 +58,7 @@ public class ClimberSubsystem extends SubsystemBase{
     // This method will be called once per scheduler run during simulation
   }
 }
-//turn motor controllers into SPARK Maxes, DONE
+
 //pull encoder from SPARK MAX
 //check docs for limit switches 
 //bottom limit is limit switch

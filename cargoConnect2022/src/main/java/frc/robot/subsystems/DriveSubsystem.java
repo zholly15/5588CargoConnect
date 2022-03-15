@@ -5,7 +5,6 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 /*
-* TO DO: tune joystick outputting
 *limelight
 */
 package frc.robot.subsystems;
