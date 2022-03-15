@@ -12,6 +12,7 @@ import frc.robot.subsystems.LimelightSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.BallSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.ClimberSubsystem;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.GenericHID;
@@ -35,6 +36,7 @@ import frc.robot.commands.TurnInPlaceCommand;
 import frc.robot.commands.Auto1Ball;
 import frc.robot.commands.IntakeLiftIn;
 import frc.robot.commands.IntakeLiftOut;
+import frc.robot.commands.Climber;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -55,6 +57,8 @@ public class RobotContainer {
   private final Auto1Ball m_autoCommand = new Auto1Ball(m_driveSubsystem, m_LimelightSubsystem, M_BALL_SUBSYSTEM);
   public static BallSubsystem M_BALL_SUBSYSTEM = new BallSubsystem();
   public static LimelightSubsystem m_LimelightSubsystem = new LimelightSubsystem();
+  public static ClimberSubsystem m_ClimberSubsystem = new ClimberSubsystem();
+
 
   public static XboxController driverXBox = new XboxController(1);
   public static XboxController operatorController = new XboxController(2);
@@ -81,6 +85,11 @@ public class RobotContainer {
             m_driveSubsystem));
     // ^ Setting the Default Command to m_robotDrive, meaning it will drive as long
     // as nothing else is scheduled
+
+    m_ClimberSubsystem.setDefaultCommand(
+      new RunCommand(() -> m_ClimberSubsystem.setSpeed(operatorController.getRawAxis(1) * Constants.CLIMBER_SPEED_MULTIPLIER),
+            m_ClimberSubsystem)
+    );
   }
 
   /**
