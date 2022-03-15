@@ -115,6 +115,11 @@ public class RobotContainer {
 
     JoystickButton climberButton = new JoystickButton(operatorController, operatorController.getAxisCount());
     climberButton.toggleWhenActive(new Climber(m_ClimberSubsystem, operatorController.getRawAxis(1)));
+    JoystickButton intakeLiftInButton = new JoystickButton(operatorController, START_ARROW);
+    outtakeButton.toggleWhenPressed(new IntakeLiftIn(M_BALL_SUBSYSTEM));
+
+    JoystickButton intakeLiftOutButton = new JoystickButton(operatorController, BACK_ARROW);
+    outtakeButton.toggleWhenPressed(new IntakeLiftOut(M_BALL_SUBSYSTEM));
 
     // TODO: limelight and check flywhel rpm
 

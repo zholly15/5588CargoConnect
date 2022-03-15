@@ -13,6 +13,7 @@ package frc.robot.subsystems;
 //import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
+import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -42,6 +43,11 @@ public class DriveSubsystem extends SubsystemBase {
     m_frontLeftEncoder.setPositionConversionFactor(1.9);
     m_frontRightEncoder.setPositionConversionFactor(1.9);
 
+    frontLeftMotor.setIdleMode(IdleMode.kBrake);
+    frontRightMotor.setIdleMode(IdleMode.kBrake);
+    backLeftMotor.setIdleMode(IdleMode.kBrake);
+    backRightMotor.setIdleMode(IdleMode.kBrake);
+
     // ^ FIX: Making sure none of the motors are inverted, change when we figure out
     // WTH is up with the motors lol
 
@@ -69,8 +75,8 @@ public class DriveSubsystem extends SubsystemBase {
 
   public void tankDrive(double leftSpeed, double rightSpeed) {
     // May need invert left
-    m_drive.tankDrive(leftSpeed * Constants.k , rightSpeed * Constants.k);
-  
+    m_drive.tankDrive(leftSpeed * Constants.k, rightSpeed * Constants.k);
+
   }
 
   @Override
