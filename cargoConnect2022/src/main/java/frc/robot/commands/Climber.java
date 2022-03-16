@@ -4,8 +4,8 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.ClimberSubsystem;
 
-public class Climber extends CommandBase{
-    @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
+public class Climber extends CommandBase {
+  @SuppressWarnings({ "PMD.UnusedPrivateField", "PMD.SingularField" })
   private final ClimberSubsystem m_ClimberSubsystem;
   private final double m_speed;
 
@@ -19,25 +19,27 @@ public class Climber extends CommandBase{
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-      //m_ballSubsystem.setFlywheelSpeed(m_speed);
-      m_ClimberSubsystem.setSpeed(m_speed);
+    m_ClimberSubsystem.setSpeed(m_speed);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+  }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+  }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-      if(m_ClimberSubsystem.getEncoderDistance() < 5 && !m_ClimberSubsystem.getSwitch())
+    if (Math.abs(m_ClimberSubsystem.getEncoderDistance()) >= 5 || m_ClimberSubsystem.getSwitch())
       return true;
-      else
-      return false;
-    //return (m_ClimberSubsystem.getEncoderDistance() <= 0 && m_ClimberSubsystem.getSwitch() );
-  }//5 x 16, 6 x 16
+    return false;
+    // return (m_ClimberSubsystem.getEncoderDistance() <= 0 &&
+    // m_ClimberSubsystem.getSwitch() );
+  }// 5 x 16, 6 x 16
+
 }

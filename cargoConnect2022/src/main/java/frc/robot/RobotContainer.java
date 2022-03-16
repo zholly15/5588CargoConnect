@@ -59,7 +59,6 @@ public class RobotContainer {
   public static LimelightSubsystem m_LimelightSubsystem = new LimelightSubsystem();
   public static ClimberSubsystem m_ClimberSubsystem = new ClimberSubsystem();
 
-
   public static XboxController driverXBox = new XboxController(1);
   public static XboxController operatorController = new XboxController(2);
 
@@ -86,10 +85,11 @@ public class RobotContainer {
     // ^ Setting the Default Command to m_robotDrive, meaning it will drive as long
     // as nothing else is scheduled
 
-    m_ClimberSubsystem.setDefaultCommand(
-      new RunCommand(() -> m_ClimberSubsystem.setSpeed(operatorController.getRawAxis(1) * Constants.CLIMBER_SPEED_MULTIPLIER),
-            m_ClimberSubsystem)
-    );
+    /*
+     * Climber climber_command = new Climber(m_ClimberSubsystem,
+     * operatorController.getRawAxis(1) * Constants.CLIMBER_SPEED_MULTIPLIER);
+     * m_ClimberSubsystem.setDefaultCommand(climber_command);
+     */
   }
 
   /**
@@ -127,6 +127,9 @@ public class RobotContainer {
 
     JoystickButton intakeLiftOutButton = new JoystickButton(operatorController, BACK_ARROW);
     intakeLiftOutButton.toggleWhenPressed(new IntakeLiftOut(M_BALL_SUBSYSTEM));
+
+    JoystickButton enableClimber = new JoystickButton(driverXBox, X_BUTTON_XBOX);
+    enableClimber.toggleWhenPressed(new Climber(m_ClimberSubsystem, Constants.CLIMBER_SPEED_MULTIPLIER));
 
     // TODO: limelight and check flywhel rpm
 

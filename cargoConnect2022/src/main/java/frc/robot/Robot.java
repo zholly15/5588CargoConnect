@@ -57,6 +57,8 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Flywheel Revolutions per min", (FLY_WHEEL_RPM));
     SmartDashboard.putBoolean("Flywheel at speed", m_robotContainer.M_BALL_SUBSYSTEM.checkFlywheelSpeed());
     SmartDashboard.putBoolean("Swtich status", m_robotContainer.m_ClimberSubsystem.getSwitch());
+    SmartDashboard.putNumber("Climber Encoder Value (rotations)",
+        m_robotContainer.m_ClimberSubsystem.getEncoderDistance());
 
     // Runs the Scheduler. This is responsible for polling buttons, adding
     // newly-scheduled
