@@ -20,6 +20,6 @@ public final class Constants {
     public static final double TRANSPORT_SPEED = 0.5;
     public static final int SMART_LIMIT = 80;
     public static final double CLIMBER_SPEED = 0.5;//multiplier for the climber
-    public static final double INTAKELIFT_SPEED = 0.8;
-
+    public static final double INTAKELIFT_SPEED_UP = 1.0;
+    public static final double INTAKELIFT_SPEED_DOWN = 0.6;
 }
