@@ -4,11 +4,11 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.ClimberSubsystem;
 
-public class ClimberIn extends CommandBase {
+public class ClimberDown extends CommandBase {
   @SuppressWarnings({ "PMD.UnusedPrivateField", "PMD.SingularField" })
   private final ClimberSubsystem m_ClimberSubsystem;
 
-  public ClimberIn(ClimberSubsystem climberSubsystem, double s) {
+  public ClimberDown(ClimberSubsystem climberSubsystem, double s) {
     m_ClimberSubsystem = climberSubsystem;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(climberSubsystem);

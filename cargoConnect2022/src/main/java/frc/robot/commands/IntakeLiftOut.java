@@ -33,7 +33,7 @@ public class IntakeLiftOut extends CommandBase {
   @Override
   public void initialize() // only once,
   {
-    ball_subsystem.setArmSpeed(Constants.INTAKELIFT_SPEED);
+    ball_subsystem.setArmSpeed(Constants.INTAKELIFT_SPEED_DOWN);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
