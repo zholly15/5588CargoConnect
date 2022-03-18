@@ -30,14 +30,14 @@ import frc.robot.commands.Spit;
 import frc.robot.commands.AutoBallShoot;
 import frc.robot.commands.BallIntake;
 import frc.robot.commands.BallOuttake;
-import frc.robot.commands.ClimberIn;
+import frc.robot.commands.ClimberDown;
 import frc.robot.commands.Transport;
 import frc.robot.commands.DriveDistance;
 import frc.robot.commands.TurnInPlaceCommand;
 import frc.robot.commands.Auto1Ball;
 import frc.robot.commands.IntakeLiftIn;
 import frc.robot.commands.IntakeLiftOut;
-import frc.robot.commands.ClimberOut;
+import frc.robot.commands.ClimberUp;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -130,10 +130,10 @@ public class RobotContainer {
     intakeLiftOutButton.toggleWhenPressed(new IntakeLiftOut(M_BALL_SUBSYSTEM));
 
     JoystickButton enableClimber = new JoystickButton(driverXBox, X_BUTTON_XBOX);
-    enableClimber.toggleWhenPressed(new ClimberOut(m_ClimberSubsystem, Constants.CLIMBER_SPEED));
+    enableClimber.toggleWhenPressed(new ClimberUp(m_ClimberSubsystem, Constants.CLIMBER_SPEED));
 
     JoystickButton disableClimber = new JoystickButton(driverXBox, Y_BUTTON_XBOX);
-    disableClimber.toggleWhenPressed(new ClimberIn(m_ClimberSubsystem, Constants.CLIMBER_SPEED));
+    disableClimber.toggleWhenPressed(new ClimberDown(m_ClimberSubsystem, Constants.CLIMBER_SPEED));
     // TODO: limelight and check flywhel rpm
 
   }
